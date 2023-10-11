@@ -7,6 +7,7 @@ import java.util.Date;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 
 public class 스레드그래픽 extends JFrame {
 
@@ -18,6 +19,9 @@ public class 스레드그래픽 extends JFrame {
 //	JLabel count = new JLabel("카운터 들어가는 자리");
 //	JLabel image = new JLabel();
 //	JLabel day = new JLabel("시각 들어가는 자리");
+
+	static 스레드그래픽 name;
+
 
 	// 객체생성시 자동호출하는 생성자 메서드를 만들어주면 된다.
 	public 스레드그래픽() {
@@ -51,7 +55,8 @@ public class 스레드그래픽 extends JFrame {
 	}
 
 	public static void main(String[] args) {
-		스레드그래픽 name = new 스레드그래픽();
+		name = new 스레드그래픽();
+		//스레드그래픽 name = new 스레드그래픽();
 		// name.go();
 	}
 
@@ -64,6 +69,9 @@ public class 스레드그래픽 extends JFrame {
 		public void run() {
 			// 동시에 처리하고 싶은 내용!
 			for (int i = 500; i >= 0; i--) {
+				if(i == 0) {
+					JOptionPane.showMessageDialog(name, "끝났습니다!"); //name이라는 프레임 위에 뜸. name은 전역변수로 선언해야 접근 가능
+				}
 				// System.out.println("카운터 >> " + i);
 				count.setText("카운터 >> " + i);
 				try {
