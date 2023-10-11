@@ -69,7 +69,7 @@ public class 스레드그래픽 extends JFrame {
 		public void run() {
 			// 동시에 처리하고 싶은 내용!
 			for (int i = 500; i >= 0; i--) {
-				if(i == 0) {
+				if(i ==  0) {
 					JOptionPane.showMessageDialog(name, "끝났습니다!"); //name이라는 프레임 위에 뜸. name은 전역변수로 선언해야 접근 가능
 				}
 				// System.out.println("카운터 >> " + i);

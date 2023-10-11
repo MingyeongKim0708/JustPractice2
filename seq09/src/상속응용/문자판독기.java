@@ -126,8 +126,8 @@ public class 문자판독기 extends JFrame{
 				//글자색을 배열에 들어있는 색상으로 순서대로 변경
 				area.setForeground(colors[c2]);
 				c2++;
-				if(c==3) {
-					c = 0;
+				if(c2==3) {
+					c2 = 0;
 				}
 			}
 		});
