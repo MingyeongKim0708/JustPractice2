@@ -1,0 +1,47 @@
+7차시 추상클래스와 인터페이스
+
+
+추상 메소드
+
+메소드 형식:
+제어자 리턴값 메소드이름() {메소드 바디}
+public void calcSalary() {//}
+
+바디가 필요없을 경우
+public abstract void calcSalary();
++ class자체에도 abstract를 적어줘야한다!! 
+absctract class Employee{
+	public abstract void calcSalary();
+}
+
+---------------------------------------------
+
+인터페이스 --> new를 생성할 수 없음. 껍데기.
+<제어자> interface <인터페이스이름> {
+
+}
+
+변수선언
+
+public interface Messenger {
+	public static final int MIN_SIZE = 1;
+	public static final int MAX_SIZE = 104857600;
+}
+
+상속받는 모든 클래스에서 공통으로 갖는 기능 구현 (자바8~)
+public default <리턴타입> <이름> ([매개변수]){
+	[<실행문>]
+}
+
+
+static 메소드기 때문에 객체 생성 없이 사용 가능
+public static <리턴타입> <이름> ([매개변수]){
+	[<실행문>]
+}
+
+클래스 - 다중상속 X. 단일 상속
+extends 클래스이름
+
+인터페이스 - 다중상속 O
+implements 인터페이스이름, 인터페이스이름, ...
+
