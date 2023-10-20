@@ -1,4 +1,4 @@
-package 게시판정보;
+package DBCP;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -6,38 +6,28 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import 회원정보.MemberVO;
-
-public class BbsDAO { // member 테이블에 crud를 하고 싶으면 MemberDAO를 사용하면 됨.
-	Connection con = null;
-
+public class MemberDAO { // member 테이블에 crud를 하고 싶으면 MemberDAO를 사용하면 됨.
 	// DAO = DB Access Object
 	// shop DB member table에 접근해서 처리하는 객체
-	public BbsDAO() {
+	Connection con = null;
+	DBConnectionMgr dbcp;
+	// new를 이용해서 객체생성시 클래스이름과 동일한 메서드가 있으면 자동실행
+	// 다른 클래스에서 MemberDAO() dao = new MemberDAO();
+	// 생성자에 private를 붙여놓으면 외부 자바파일에서 객체생성 불가능
+	public MemberDAO() {
+		// 객체생성시 자동호출되는 메서드 == 생성자 (메서드), constructor
+		// jdbc 1,2단계
 		try {
-			Class.forName("com.mysql.cj.jdbc.Driver"); // 패키지.대표클래스
-			System.out.println("1. 커넥터 연결 성공!!");
-
-			// 2. 1번 설정을 커넷터로 db연결하고 승인
-			// 1) url - ip + port+ db명
-			// 2) id, pw
-			String url = "jdbc:mysql://localhost:3306/shop?useUnicode=true&serverTimezone=Asia/Seoul";
-			String user = "root";
-			String password = "1234";
-
-			con = DriverManager.getConnection(url, user, password);
-			System.out.println("2. shop db 연결 성공!!");
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			dbcp = DBConnectionMgr.getInstance(); // DBConnectionMgr 사용
+			con = dbcp.getConnection(); // 임대. Vector 10개 중 안쓰는 것을 임대
+		} catch (Exception e) {
+			System.out.println("에러발생");
 		}
 	}
 
 	// insert
-	public void insert(String title, String content, String writer) {
+	public int insert(MemberVO bag) {
+		int result = 0;
 		// Java-DB 연결 (JDBC) 4단계
 
 		// 1. 연결할 부품(커넥터, driver, 드라이버) 설정
@@ -45,91 +35,99 @@ public class BbsDAO { // member 테이블에 crud를 하고 싶으면 MemberDAO�
 		// 상황이 발생했을 때 어떻게 대처할지를 반드시 써주어야 함. try-catch
 		try {
 			// 3. 2번에서 연결된 것을 가지고 sql문 생성
-			String sql = "insert into bbs values (null, ?, ?, ?)";
+			String sql = "insert into member values (?, ?, ?, ?)";
 			// String site = "http://www.naver.com";
 			// 해당 부품으로 만들어주어야 한다.
 			// sql ==> PreparedStatement
 			// site ==> URL
 			PreparedStatement ps = con.prepareStatement(sql);
-			ps.setString(1, title);
-			ps.setString(2, content);
-			ps.setString(3, writer);
+			ps.setString(1, bag.getId()); // 첫번째 물음표에 id 넣기
+			ps.setString(2, bag.getPw()); // 두번째 물음표에 pw 넣기
+			ps.setString(3, bag.getName()); // 세번째 물음표에 name 넣기
+			ps.setString(4, bag.getTel()); // 네번째 물음표에 tel 넣기
 			System.out.println("3. sql문 생성 성공!!");
 
 			// 4. 3번에서 생성된 sql문을 mySQL로 전송
-			ps.execute();
+			result = ps.executeUpdate(); // int
 			System.out.println("4. SQL문 mySQL로 전송 성공!!");
+
+			// db연결자원해제 - RAM 삭제
+			dbcp.freeConnection(con, ps);
 
 		} catch (Exception e) { // 모든 에러를 catch 함 Exception == Error
 			e.printStackTrace();
 			System.out.println("에러발생");
 		}
+		return result;
 
 	}
 
 	// delete
-	public void delete(int no) {
-		// Java-DB 연결 (JDBC) 4단계
+	public int delete(MemberVO bag) {
+		int result = 0;
 
-		// 1. 연결할 부품(커넥터, driver, 드라이버) 설정
-		// 외부자원연결(db,network,cpu,file,...)
-		// 상황이 발생했을 때 어떻게 대처할지를 반드시 써주어야 함. try-catch
 		try {
 			// 3. 2번에서 연결된 것을 가지고 sql문 생성
-			String sql = "delete from bbs where no = ?";
+			String sql = "delete from member where id = ?";
 			// 해당 부품으로 만들어주어야 한다.
 			// sql ==> PreparedStatement
 			PreparedStatement ps = con.prepareStatement(sql);
-			ps.setInt(1, no);
+			ps.setString(1, bag.getId()); // 첫번째 물음표에 id 넣기
 			System.out.println("3. sql문 생성 성공!!");
 
 			// 4. 3번에서 생성된 sql문을 mySQL로 전송
-			ps.execute();
+			result = ps.executeUpdate(); // int
 			System.out.println("4. SQL문 mySQL로 전송 성공!!");
+
+			// db연결자원해제 - RAM 삭제
+			dbcp.freeConnection(con, ps);
 
 		} catch (Exception e) { // 모든 에러를 catch 함 Exception == Error
 			e.printStackTrace();
 			System.out.println("에러발생");
 		}
+		return result;
 
 	}
 
 	// update
-	public void update(String title, String content, int no) {
-		// Java-DB 연결 (JDBC) 4단계
+	public int update(MemberVO bag) {
+		int result = 0;
 
-		// 1. 연결할 부품(커넥터, driver, 드라이버) 설정
-		// 외부자원연결(db,network,cpu,file,...)
-		// 상황이 발생했을 때 어떻게 대처할지를 반드시 써주어야 함. try-catch
 		try {
 			// 3. 2번에서 연결된 것을 가지고 sql문 생성
-			String sql = "update bbs set title = ?, content = ? where no = ?";
+			String sql = "update member set tel = ? where id = ?";
 			// 해당 부품으로 만들어주어야 한다.
 			// sql ==> PreparedStatement
 			PreparedStatement ps = con.prepareStatement(sql);
-			ps.setString(1, title);
-			ps.setString(2, content);
-			ps.setInt(3, no);
+			ps.setString(1, bag.getTel());
+			ps.setString(2, bag.getId());
 			System.out.println("3. sql문 생성 성공!!");
 
 			// 4. 3번에서 생성된 sql문을 mySQL로 전송
-			ps.execute();
+			result = ps.executeUpdate(); // int
 			System.out.println("4. SQL문 mySQL로 전송 성공!!");
+
+			// db연결자원해제 - RAM 삭제
+			dbcp.freeConnection(con, ps);
 
 		} catch (Exception e) { // 모든 에러를 catch 함 Exception == Error
 			e.printStackTrace();
 			System.out.println("에러발생");
 		}
 
+		return result;
+
 	}
 
 	// one - select
-	public BbsVO one(int no) {
-		BbsVO bag = new BbsVO();
+	public MemberVO one(String id) {
+		MemberVO bag = new MemberVO();
+
 		try {
-			String sql = "select * from bbs where no = ?";
+			String sql = "select * from member where id = ?";
 			PreparedStatement ps = con.prepareStatement(sql);
-			ps.setInt(1, no);
+			ps.setString(1, id);
 			System.out.println("3. sql문 생성 성공!!");
 
 			// select의 결과는 테이블. 검색결과가 없어도 테이블! 검색결과가 없는 경우에는 데이터가 없음
@@ -138,31 +136,34 @@ public class BbsDAO { // member 테이블에 crud를 하고 싶으면 MemberDAO�
 			// System.out.println(table.next()); //table 안에 데이터가 있으면 true, 없으면 false
 			// (ResultSet에 있는 것)
 			if (table.next()) { // table 안에 검색결과인 row가 있는지 체크
-				int no2 = table.getInt("no");
-				String title = table.getString("title");
-				String content = table.getString("content");
-				String writer = table.getString("writer");
+				String id2 = table.getString("id"); // id는 컬럼명
+				String pw = table.getString("pw");
+				String name = table.getString("name");
+				String tel = table.getString("tel");
 
-				System.out.println(no2);
-				System.out.println(title);
-				System.out.println(content);
-				System.out.println(writer);
+				System.out.println(id2);
+				System.out.println(pw);
+				System.out.println(name);
+				System.out.println(tel);
 
-				bag.setNo(no2);
-				bag.setTitle(title);
-				bag.setContent(content);
-				bag.setWriter(writer);
+				bag.setId(id2);
+				bag.setPw(pw);
+				bag.setName(name);
+				bag.setTel(tel);
 
 			} else {
 				System.out.println("검색결과가 없음.");
 			}
 
+			// db연결자원해제 - RAM 삭제
+			dbcp.freeConnection(con, ps, table); //반납
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.out.println("에러발생");
 		}
 		return bag;
 
-	} // one
+	}// one
 
 }
