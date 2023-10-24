@@ -1,0 +1,21 @@
+231024 jsp
+
+컨트롤 F11
+1. tomcat을 시작 7777/8888
+2. 브라우저가 tomcat에게 test.html 요청
+3. tomcat이 찾은 test.html을 브라우저에 응답
+4. 브라우저는 받은 test.html을 분석해서 실행
+
+오류 발생시 포트번호를 변경해서 재시작
+
+개발할때는 WebContent / Webapp 폴더 아래에
+tomcat이 찾아야하는 html/css/js/img 파일을 넣어둔다
+
+실제로 개발이 다 끝나면
+tomcat아래 web00 폴더를 옮기게 되는데
+web00/html파일이 들어가게 된다
+
+http://localhost:8888/web00/me.html
+
+
+http://localhost:8888/web01/insert2.jsp?title=good&content=very+good&writer=apple
