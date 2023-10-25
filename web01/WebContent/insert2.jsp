@@ -22,9 +22,7 @@
 	
 	//2. DAO에 데이터를 주소 db처리 요청
 	BbsDAO dao = new BbsDAO();
-	
 	BbsVO bag = new BbsVO();
-	
 	bag.setTitle(title);
 	bag.setContent(content);
 	bag.setWriter(writer);

@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>PRODUCT INSERT</title>
+<title>BBS UPDATE</title>
 <style>
 * {
 	font-family: "마루 부리";
@@ -10,13 +10,14 @@
 }
 
 body {
-	background: lightsalmon;
+	background: pink;
 	text-align: center;
 }
 
 input {
 	background: greenyellow;
 }
+
 
 a {
 	color: blue;
@@ -49,6 +50,8 @@ button:hover {
 }
 
 .left {
+	/* 여러개를 선택해서 지정하고 싶을 때 클래스를 사용. 클래스 중 left에 해당하는 것만 스타일을 지정해라. */
+	/* 클래스 선택은 .클래스명 */
 	width: 120px;
 	background: blue;
 	color: white;
@@ -61,40 +64,29 @@ button:hover {
 </style>
 </head>
 <body>
-	<h3>상품 등록 화면</h3>
+	<h3>게시판 글수정 페이지</h3>
 	<hr color="blue">
 	<a href="index.html">첫 페이지로</a>
 	　　<!-- 여백 -->
-	<a href="product.html">상품정보페이지로</a>
-	<form action="insert3.jsp">
+	<a href="bbs.html">게시판정보 페이지로</a>
+	<form action="update2.jsp">
 		<table border="1" align="center">
 			<tr>
-				<td class="left">id</td>
-				<td><input name="id" value="pk다르게 입력"></td>
+				<td class="left">번호</td>
+				<td><input name="no"></td>
 			</tr>
 			<tr>
-				<td class="left">name</td>
-				<td><input name="name" value="111"></td>
+				<td class="left">제목</td>
+				<td><input name="title" value="good"></td>
 			</tr>
 			<tr>
-				<td class="left">content</td>
-				<td><input name="content" value="111"></td>
-			</tr>
-			<tr>
-				<td class="left">price</td>
-				<td><input name="price" value="111"></td>
-			</tr>
-			<tr>
-				<td class="left">company</td>
-				<td><input name="company" value="c100"></td>
-			</tr>
-			<tr>
-				<td class="left">img</td>
-				<td><input name="img" value="111.png"></td>
+				<td class="left">내용</td>
+				<td><textarea cols="20" rows="5" name="content">very good</textarea></td>
 			</tr>
 			<tr>
 				<td id="bottom" colspan="2">
-					<button type="submit">상품등록요청</button>
+					<!-- 컨트롤+쉬프트+슬러시(/) : 주석 --> <!-- form 안에 들어있는 버튼은 전송용 버튼. type = "submit" 생략 가능-->
+					<button type="submit">게시글수정요청</button> <!-- <input type="submit" value="회원가입요청"> -->
 				</td>
 			</tr>
 		</table>
