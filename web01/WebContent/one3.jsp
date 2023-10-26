@@ -1,6 +1,5 @@
-<%@page import="bean.BbsVO"%>
-<%@page import="bean.BbsDAO"%>
-<%@page import="bean.MemberDAO"%>
+<%@page import="bean.ProductVO"%>
+<%@page import="bean.ProductDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!-- 
@@ -10,23 +9,24 @@
     3) 요청에 대한 결과를 html로 만든다.
      -->
 <%
-	String no = request.getParameter("no");
+	String id = request.getParameter("id");
 
-	BbsDAO dao = new BbsDAO();
-
-	BbsVO bag = dao.one(Integer.parseInt(no));
+	ProductDAO dao = new ProductDAO();
+	ProductVO bag = dao.one(id);
+	/* 	ProductVO bag = new ProductVO(); // one3.jsp
+		bag = dao.one(id); */
 %>
 
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>BBS ONE JSP</title>
+<title>PRODUCT ONE JSP</title>
 <style>
 * {
 	font-family: "마루 부리";
 	font-size: 20px;
-	text-align:center;
+	text-align: center;
 }
 
 a {
@@ -59,26 +59,35 @@ td {
 	<hr color="blue">
 	<table border="1" align="center">
 		<tr>
-			<td class="left">번호</td>
-			<td><%=bag.getNo()%></td>
+			<td class="left">상품 번호</td>
+			<td><%=bag.getId()%></td>
 		</tr>
 		<tr>
-			<td class="left">제목</td>
-			<td><%=bag.getTitle()%></td>
+			<td class="left">상품이름</td>
+			<td><%= bag.getName()%></td>
 		</tr>
 		<tr>
-			<td class="left">내용</td>
+			<td class="left">상품설명</td>
 			<td><%=bag.getContent()%></td>
 		</tr>
 		<tr>
-			<td class="left">작성자</td>
-			<td><%=bag.getWriter()%></td>
+			<td class="left">상품가격</td>
+			<td><%=bag.getPrice()%></td>
 		</tr>
+		<tr>
+			<td class="left">제조회사</td>
+			<td><%=bag.getCompany()%></td>
+		</tr>
+		<tr>
+			<td class="left">상품이미지</td>
+			<td><img src="img/<%=bag.getImg()%>" width=100%></td>
+		</tr>
+
 	</table>
 
 	<br>
 	<a href="index.html">첫 페이지로</a>
 	<br>
-	<a href="bbs.html">게시판정보 페이지로</a>
+	<a href="product.html">상품정보 페이지로</a>
 </body>
 </html>

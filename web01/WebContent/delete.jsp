@@ -14,9 +14,13 @@
      
      int result = dao.delete(id); // 1,0
      
-     String resultText = "회원 탈퇴 실패. 없는 아이디입니다.";
+     String resultText = "회원 탈퇴 실패.";
+     String resultText2 = "는 없는 아이디입니다.";
+     String resultImg = "sad.png";
      if(result == 1){
     	 resultText = "회원 탈퇴 성공";
+    	 resultText2 = "의 탈퇴가 완료되었습니다.";
+    	 resultImg = "happy.png";
      }
      %>
 
@@ -29,6 +33,7 @@
 * {
 	font-family: "마루 부리";
 	font-size: 20px;
+	text-align: center;
 }
 a {
 	color: blue;
@@ -45,7 +50,9 @@ a:hover {
 <body bgcolor="lavender">
 <h5><%= resultText %></h5>
 <hr color = "blue">
-탈퇴한 아이디는 <%= id %> <br><br>
+<img src="img/<%=resultImg%>" width="10%"><br>
+<%= id %> <%= resultText2 %><br>
+<br>
 <a href="index.html">첫 페이지로</a><br>
 <a href="member.html">회원정보 페이지로</a>
 </body>

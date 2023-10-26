@@ -16,10 +16,10 @@
      int result = dao.delete(Integer.parseInt(no));
      
      String resultText = "게시글 삭제 실패. 없는 번호입니다.";
-     String resultImg = "3.png";
+     String resultImg = "sad.png";
      if(result == 1){
     	 resultText = "게시글 성공";
-    	 resultImg = "1.png";
+    	 resultImg = "happy.png";
      }
      %>
 
@@ -48,7 +48,7 @@ a:hover {
 <body bgcolor="lavender">
 <h5><%= resultText %></h5>
 <hr color = "blue">
-<img src="img/<%= resultImg %>"><br>
+<img src="img/<%= resultImg %>" width="10%"><br>
 삭제한 게시글 번호는 <%= no %> <br><br>
 <a href="index.html">첫 페이지로</a><br>
 <a href="bbs.html">게시판정보 페이지로</a>

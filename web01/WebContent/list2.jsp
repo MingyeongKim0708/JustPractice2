@@ -66,7 +66,7 @@ td {
 		%>
 		<tr>
 			<td class="no"><%=bag.getNo()%></td>
-			<td><%=bag.getTitle()%></td>
+			<td><a href="one2.jsp?no=<%=bag.getNo()%>"><%=bag.getTitle()%></a></td>
 			<td><%=bag.getContent()%></td>
 			<td><%=bag.getWriter()%></td>
 		</tr>

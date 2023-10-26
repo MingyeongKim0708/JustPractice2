@@ -30,6 +30,20 @@ a:hover {
 	text-decoration: none;
 }
 
+button {
+	width: 100%;
+	height: 100%;
+	color: blue;
+	background: gold;
+	font-size: 0.8rem;
+	border-radius: 30px;
+	cursor: pointer;
+}
+button:hover {
+	background: tomato;
+	color: white;
+}
+
 td {
 	width: 120px;
 }
@@ -50,6 +64,7 @@ td {
 			<td>패스워드</td>
 			<td>이름</td>
 			<td>전화번호</td>
+			<td>상세정보</td>
 		</tr>
 		<!-- 반복문(for) 필요 -->
 		<%
@@ -61,6 +76,7 @@ td {
 			<td><%=bag.getPw()%></td>
 			<td><%=bag.getName()%></td>
 			<td><%=bag.getTel()%></td>
+			<td><a href="one.jsp?id=<%=bag.getId()%>"><button>상세정보보기</button></a></td>
 		</tr>
 		<%
 			} //for

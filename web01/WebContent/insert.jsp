@@ -20,7 +20,7 @@
 	String pw = request.getParameter("pw");
 	String name = request.getParameter("name");
 	String tel = request.getParameter("tel");
-	
+
 	//2. DAO에 데이터를 주소 db처리 요청
 	// JSP = java + html
 	MemberDAO dao = new MemberDAO();
@@ -30,9 +30,17 @@
 	bag.setPw(pw);
 	bag.setName(name);
 	bag.setTel(tel);
-	
-	dao.insert(bag);
-	
+
+	int result = dao.insert(bag);
+
+	String resultText = "회원 가입 실패";
+	String resultText2 = "이미 존재하는 아이디입니다. 다른 아이디로 가입하세요.";
+	String resultImg = "sad.png";
+	if (result == 1) {
+		resultText = "회원 가입 성공";
+		resultImg = "happy.png";
+		resultText2 = "환영합니다!";
+	}
 	//3. 결과를 html로 만들어서 클라이언트에 전송
 %>
 <!DOCTYPE html>
@@ -44,7 +52,9 @@
 * {
 	font-family: "마루 부리";
 	font-size: 20px;
+	text-align: center;
 }
+
 a {
 	color: blue;
 	text-decoration: none;
@@ -55,17 +65,49 @@ a:hover {
 	color: red;
 	text-decoration: none;
 }
+
+td {
+	width: 300px;
+}
+
+.left {
+	width: 120px;
+	background: blue;
+	color: white;
+	text-align: center;
+}
 </style>
 
 </head>
 <body bgcolor="lavender">
-<h5>당신이 입력한 회원정보를 확인해주세요.</h5>
-<hr color = "blue">
-가입한 아이디는 <%= id %> <br> <!-- 자바에 있는 id 변수 값 출력(프린트) representaion 표현식 -->
-가입한 비밀번호는 <%= pw %> <br>
-가입한 이름은 <%= name %> <br>
-가입한 전화번호는 <%= tel %>입니다. <br><br>
-<a href="index.html">첫 페이지로</a><br>
-<a href="member.html">회원정보 페이지로</a>
+	<h5><%=resultText%></h5>
+	<hr color="blue">
+	<img src="img/<%=resultImg%>" width="10%">
+	<table border="1" align="center">
+		<tr>
+			<td class="left">아이디</td>
+			<td><%=id%></td>
+		</tr>
+		<tr>
+			<td class="left">비밀번호</td>
+			<td><%=pw%></td>
+		</tr>
+		<tr>
+			<td class="left">회원이름</td>
+			<td><%=name%></td>
+		</tr>
+		<tr>
+			<td class="left">회원전화</td>
+			<td><%=tel%></td>
+		</tr>
+	</table>
+	<br>
+	<%=resultText2%>
+	<!-- 자바에 있는 id 변수 값 출력(프린트) representaion 표현식 -->
+	<br>
+	<br>
+	<a href="index.html">첫 페이지로</a>
+	<br>
+	<a href="member.html">회원정보 페이지로</a>
 </body>
 </html>
