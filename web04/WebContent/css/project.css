@@ -1,0 +1,69 @@
+@charset "UTF-8";
+
+* {
+	text-align: center;
+	vertical-align: middle;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover { /* 가상으로 a태그위에 마우스를 올렸다고 가정하고 스타일을 지정(가상선택자) */
+	text-decoration: overline;
+	background: white;
+	color: red; /* 글자색 */
+}
+
+li {
+	list-style: none;
+	float: left;
+	padding: 15px;
+}
+
+li:first-child {
+	border-radius: 50px 0 0 50px; /* 1~4번까지 시계방향 넘버링 */
+}
+
+li:last-child {
+	border-radius: 0 50px 50px 0;
+}
+
+li:nth-child(2n) { /* 짝수인 li에 스타일 적용 */
+	background: pink;
+}
+
+li:nth-child(2n+1) { /* 홀수인 li에 스타일 적용 */
+	background: orange;
+}
+
+#total {
+	width: 800px;
+	height: 800px;
+	color: blue;
+	font: 25px 궁서 bold;
+	background-image: url("../img/back.png");
+	/* .. = 현재 폴더에서 나가기(상위 폴더로 이동) */
+}
+
+#top {
+	width: 800px;
+	height: 70px;
+	background: lime;
+}
+
+#top2 {
+	width: 250px;
+	height: 300px;
+	background: black;
+	color: yellow;
+	position: fixed;
+	top: 5px;
+	right: 5px;
+	border-radius: 100px 100px 100px 100px;
+}
+
+#center {
+	width: 800px;
+	height: 700px;
+}
