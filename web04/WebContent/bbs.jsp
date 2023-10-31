@@ -32,7 +32,9 @@
 			<br><br>
 			<% if (session.getAttribute("id") != null) { %>
 			<span class="alert alert-success"><%=session.getAttribute("id")%>님	환영합니다.</span>
+			&nbsp;
 			<a href="insert.jsp"><button class="btn btn-danger">글쓰기</button></a>
+			&nbsp;
 			<a href="logout.jsp"><button class="btn btn-outline-danger">로그아웃</button></a>
 			<% } %>
 			<%
@@ -53,8 +55,8 @@
 				<tbody>
 				<% for(BbsDTO2 bag : list) {%>
 				<tr class="table-info">
-					<td><a href ="bbs2.jsp?id=<%= bag.getId() %>"><%= bag.getTitle() %></a></td>
-					<td><%= bag.getContent() %></td>
+					<td><%= bag.getTitle() %></td>
+					<td><a href ="bbs2.jsp?id=<%= bag.getId() %>"><%= bag.getContent() %></a></td>
 					<td><%= bag.getWriter() %></td>
 				</tr>
 				<% } %>

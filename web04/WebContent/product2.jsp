@@ -2,12 +2,19 @@
 <%@page import="bean.ProductDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-	<jsp:useBean id="bag" class="bean.ProductDTO"></jsp:useBean>
-	<jsp:setProperty property="id" name="bag"/>
-	<%
+<!-- 
+	import bean.ProductDTO;
+	ProductDTO bag = new ProductDTO;
+	 -->
+<jsp:useBean id="bag" class="bean.ProductDTO"></jsp:useBean>
+<!-- 
+	bag.setId(request.getParameter("id");
+	 -->
+<jsp:setProperty property="id" name="bag" />
+<%
 	ProductDAO dao = new ProductDAO();
 	ProductDTO bag2 = dao.one(bag);
-	%>
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,10 +22,13 @@
 <title>Insert title here</title>
 <link rel="stylesheet" type="text/css" href="css/project.css">
 <!-- Latest compiled and minified CSS -->
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+	rel="stylesheet">
 
 <!-- Latest compiled JavaScript -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script
+	src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 <body>
 	<div id="total">
@@ -38,27 +48,32 @@
 				}
 			%>
 			<br>
-		
-		<table border="1" class="table table-hover">
+
+			<table border="1" class="table table-hover">
 				<tr class="table-warning">
-					<td rowspan="5"><img src="img/<%= bag2.getImg() %>" width="100%"></td>
-					<td><%= bag2.getId() %></td>
+					<td class="table-info" rowspan="5"><img
+						src="img/<%=bag2.getImg()%>" width="100%"></td>
+					<td><span class="badge bg-primary">상품 아이디</span> <%=bag2.getId()%></td>
 				</tr>
 				<tr class="table-warning">
-					<td><%= bag2.getTitle() %></td>
+					<td><span class="badge bg-primary">상품 이름</span> <%=bag2.getTitle()%></td>
 				</tr>
 				<tr class="table-warning">
-					<td><%= bag2.getContent() %></td>
+					<td><span class="badge bg-primary">상품 설명</span> <%=bag2.getContent()%></td>
 				</tr>
 				<tr class="table-warning">
-					<td><%= bag2.getPrice() %></td>
+					<td><span class="badge bg-primary">상품 가격</span> <%=bag2.getPrice()%>원</td>
 				</tr>
 				<tr class="table-warning">
-					<td><%= bag2.getCompany() %></td>
+					<td><span class="badge bg-primary">상품 회사</span> <%=bag2.getCompany()%></td>
 				</tr>
 			</table>
+			<center>
+				<button type="button" class="btn btn-primary">장바구니</button>
+				<button type="button" class="btn btn-success">주문하기</button>
+			</center>
 		</div>
-		
+
 	</div>
 </body>
 </html>

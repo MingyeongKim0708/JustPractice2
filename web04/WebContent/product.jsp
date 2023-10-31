@@ -28,37 +28,51 @@
 			<jsp:include page="top2.jsp"></jsp:include>
 		</div>
 		<div id="center">
-		<br><br>
-			<% if (session.getAttribute("id") != null) { %>
-			<span class="alert alert-success"> <%=session.getAttribute("id")%>님	환영합니다.</span>
+			<br>
+			<br>
+			<%
+				if (session.getAttribute("id") != null) {
+			%>
+			<span class="alert alert-success"> <%=session.getAttribute("id")%>님 환영합니다.</span>
+			&nbsp;
 			<a href="logout.jsp"><button class="btn btn-outline-danger">로그아웃</button></a>
-			<% } %>
+			<%
+				}
+			%>
 			<%
 				ProductDAO dao = new ProductDAO();
 				ArrayList<ProductDTO> list = dao.list();
 			%>
-			<br><br>
-			전체 물건 수 : <%= list.size() %>
-			<br><br>
+			<br>
+			<br> 전체 물건 수 :
+			<%=list.size()%>
+			<br>
+			<br>
 			<table border="1" class="table table-hover">
 				<thead>
-					<tr class="table-warning">
+					<tr class="table-info">
 						<td>상품명</td>
 						<td>상품가격</td>
 						<td>상품이미지</td>
 					</tr>
 				</thead>
 				<tbody>
-				<% for(ProductDTO bag : list) {%>
-				<tr class="table-info">
-					<td><a href="product2.jsp?id=<%= bag.getId() %>"><%= bag.getTitle() %></a></td>
-					<td><%= bag.getPrice() %>원</td>
-					<td><img src="img/<%= bag.getImg() %>" width="50%" height="50%"></td>
-					
-				</tr>
-				<% } %>
+					<%
+						for (ProductDTO bag : list) {
+					%>
+					<tr class="table-warning">
+						<td><a href="product2.jsp?id=<%=bag.getId()%>"><%=bag.getTitle()%></a></td>
+						<td><%=bag.getPrice()%>원</td>
+						<td><img src="img/<%=bag.getImg()%>" width="50%"
+							height="50%"></td>
+
+					</tr>
+					<%
+						}
+					%>
 				</tbody>
 			</table>
+
 		</div>
 	</div>
 </body>

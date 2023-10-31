@@ -1,5 +1,22 @@
+<%@page import="bean.BbsDAO"%>
+<%@page import="bean.BbsDTO2"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	<!-- bag(dto)를 만들어서 받은 앞페이지에서 받은 데이터를 dto에 넣기 -->
+	<!-- 액션태그 사용(jsp:useBean, jsp:setProperty)-->
+	<jsp:useBean id="bag" class="bean.BbsDTO2"></jsp:useBean>
+	<jsp:setProperty property="*" name="bag"/>
+	<!-- dao.insert(bag)을 이용해서 db처리후 결과가 1이면 bbs.jsp로 화면 자동 넘김 -->
+	<!-- response.sendRedirect("bbs.jsp" -->
+	<!-- db처리후 결과가 1이 아니면... -->
+	<%
+	BbsDAO dao = new BbsDAO();
+	int result = dao.insert(bag);
+	
+	if(result == 1){
+		response.sendRedirect("bbs.jsp");
+	}
+	%>
 <!DOCTYPE html>
 <html>
 <head>
