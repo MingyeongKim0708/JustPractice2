@@ -29,6 +29,32 @@
 <!-- Latest compiled JavaScript -->
 <script
 	src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script type="text/javascript" src="js/jquery-3.7.1.js"></script>
+<script type="text/javascript">
+	$(function() {
+	//제이쿼리 함수 설정
+	//1)어떤것(id,class,tag)을
+	//2)어떻게 했을 때(click,keyup,blur)
+	//3)어떤 처리(function)을 하겠다
+	$('#basket').click(function(){
+		$.ajax({
+			url : "basket.jsp",
+			data : {
+				id : '<%= bag2.getId()%>',
+				title : '<%= bag2.getTitle()%>',
+				price : '<%= bag2.getPrice()%>'
+			},
+			success : function() {
+				alert('장바구니에 추가되었습니다@@')
+				let go = confirm('장바구니로 이동하시겠습니까?') //true,false
+				if(go){
+					location.href = "basket.jsp"
+				}
+			}
+		})//ajax
+	})//basket
+	})
+</script>
 </head>
 <body>
 	<div id="total">
@@ -69,7 +95,7 @@
 				</tr>
 			</table>
 			<center>
-				<button type="button" class="btn btn-primary">장바구니</button>
+				<button type="button" class="btn btn-primary" id="basket">장바구니</button>
 				<button type="button" class="btn btn-success">주문하기</button>
 			</center>
 		</div>
