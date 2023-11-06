@@ -10,7 +10,7 @@
 $(function() {
 	$('#b1').click(function() {
 		$.ajax({
-			url : "https://api.openweathermap.org/data/2.5/weather?lat=37.508861&lon=127.063149&appid=15770229211726b9ebc61a70a9d8b513",
+			url : "https://api.openweathermap.org/data/2.5/weather?lat=37.508861&lon=127.063149&appid={@@@@@@@@@@@@apiid@@@@@@@@@@@@}",
 			success : function(data) {
 				console.log(data)
 				$('#d1').html('위치 : ' + data.name + '<br>' +
