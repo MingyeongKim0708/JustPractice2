@@ -1,5 +1,5 @@
 <%@page import="bean.MemberVO"%>
-<%@page import="bean.MemberDAO"%>
+<%@page import="bean.CarDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!-- 
@@ -23,7 +23,7 @@
 
 	//2. DAO에 데이터를 주소 db처리 요청
 	// JSP = java + html
-	MemberDAO dao = new MemberDAO();
+	CarDAO dao = new CarDAO();
 	//bag 기능을 하는 DTO(VO)가 필요 --> 만들어주고 --> 값을 넣어야함
 	MemberVO bag = new MemberVO();
 	bag.setId(id);

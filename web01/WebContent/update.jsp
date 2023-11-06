@@ -1,4 +1,4 @@
-<%@page import="bean.MemberDAO"%>
+<%@page import="bean.CarDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
@@ -6,7 +6,7 @@
 	String id = request.getParameter("id");
 	String tel = request.getParameter("tel");
 
-	MemberDAO dao = new MemberDAO();
+	CarDAO dao = new CarDAO();
 
 	int result = dao.update(id, tel);
 
