@@ -1,0 +1,69 @@
+20231108-강의메모
+
+Spring
+
+STS
+1. 프로젝트생성
+Spring Legacy Project - Spring MVC Project - com.multi.mvc01
+
+2. 프로젝트 클릭 alt + enter
+Proect Facets - Java 1.8, Runtimes - Apache Tomcat v8.5
+
+3. pom.xml
+<java-version>1.8</java-version>
+<org.springframework-version>5.0.1.RELEASE</org.springframework-version>
+
+mysql 라이브러리 추가 (https://mvnrepository.com/artifact/com.mysql/mysql-connector-j/8.0.31)
+Maven 복사 - <!-- Test --> 위 추가
+
+		<!-- https://mvnrepository.com/artifact/com.mysql/mysql-connector-j -->
+		<dependency>
+		    <groupId>com.mysql</groupId>
+		    <artifactId>mysql-connector-j</artifactId>
+		    <version>8.0.31</version>
+		</dependency>
+
+4. src/main/webapp 아래 index.jsp 실행
+==> 에러가 발생하면 404 에러
+
+-------------------------------------------------------------
+
+MVC
+M (model. 방법) --> DAO (jdbc4)
+V (view. 출력, 입력화면) --> html (JSP)
+C (controller. 제어) --> Java (mvc1에서 만든 jsp 파일 <% %> 부분 분리 필요)
+
+
+
+-------------------------------------------------------------
+
+1. Controller클래스를 왜 따로 만들었을까요?
+==> MVC2방법론에 맞게 컨트롤러(자바코드)를 따로 분리시켜 만들기 위해서
+
+2. webapp아래 들어가는 jsp와 webapp/WEB-INF/views아래 들어가는 jsp의 차이가 뭘까요?
+==> webapp: 클라이언트가 요청하는 페이지(form, 단순하게 보여주는 페이지)
+==> webapp/WEB-INF/views: 컨트롤러의 처리 결과를 담아서 클라이언트에게 전송하기 위해 만든 페이지, 서버(스프링)가 호출 
+
+3. <a href=“WEB-INF/views/test.jsp”>호출</a> 404에러가 뜬다. 원인은??
+==> a태그는 클라이언트가 요청하게 하는 태그이므로 webapp아래에서만 찾게된다.
+==> WEB-INF/views/아래에 있는 파일은 클라이언트가 직접 호출하는 것은 불가능하고
+       반드시 컨트롤러를 거쳐서 views아래있는 결과를 받게 호출.
+
+
+-------------------------------------------------------------
+
+1. 컨트롤러에서 결과에 따라 views를 다르게 설정하고 싶다.
+==> 결과에 따라서 다른 views의 파일이름을 return해주세요.!!!
+2. controller갔다가 redirect(방향을 틀어서) webapp에 있는 파일을 호출하게 하고 싶다.
+==> 컨트롤러에서 redirect:호출주소를 지정해주세요.!!!
+3. 컨트롤러의 결과를 views아래 jsp에 출력하고 싶다.
+==> 컨트롤러 - 함수이름(Model model) --> model.addAttribute(“전달할이름“, 전달할값);
+==> views/jsp - ${전달할이름}
+
+
+-------------------------------------------------------------
+
+사이트를 만드는 목적/주제
+사이트에 소개
+사이트의 주요메뉴
+타사이트와의 차별점

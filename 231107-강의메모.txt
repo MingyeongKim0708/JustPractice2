@@ -1,0 +1,79 @@
+20231107
+서블릿
+
+@WebServlet("/hi2")
+==> 주소 지정하는 표시 (annotation, 어노테이션)
+
+<%= session.getAttribute(“id”) %>
+${id}
+
+insert.jsp —> insert2.jsp --dto—> dao --sql—> db
+browser	<— html      	   <—1                   <—1
+
+1. basket.jsp를 복사해서 insert2.jsp를 만드세요.
+2. bag(dto)를 만들 어서 받은 앞페이지에서 받은 데이터를 dto에 넣으세요.
+    액션태그 사용(<jsp:useBean><jsp:setProperty>)
+3. dao.insert(bag)을 이용해서 db처리후 결과가 1이면 bbs.jsp로 화면자동 넘김
+    response.sendRedirect(“bbs.jsp”);
+4. db처리후 결과가 1이 아니면 ~~~ 저와함께 구현!
+
+
+
+bbs.jsp —> 하나 클릭(bbs2.jsp) —> 수정하기(update.jsp) —> 수정db반영(update2.jsp)
+
+1)검색처리 - dao.one(bag) ==> update.jsp(htmlO) <— basket.jsp
+   수정해줘라고 요청할때는 수정하는 화면을 먼저 보여주어야함.
+   입력폼안에 데이터가 미리 들어가있어야함.
+   ==> db에서 검색한 후, 데이터를 form에 넣어주어야함.
+
+2)수정반영처리 - dao.update(bag) ==> update2.jsp(htmlX)
+  수정하고 싶은 내용을 다시 넣고,
+  수정내용을 db에 반영해줘..요청 
+
+
+https://search.naver.com/search.naver?where=nexearch&sm=top_hty&fbm=0&ie=utf8&query=car
+
+<form action=“search.naver”>
+	<input name=“query” value=“car”>
+	<input name=“ie” value=“utf8” type=“hidden”>
+	<button>검색</button>
+</from>
+
+
+
+
+
+
+
+
+
+메인—> 뉴스 —> 연예 —> 청룡 김혜수
+
+앞페이지에서 클릭을 했기 때문에 다음페이지가 호출이 되었음.
+                   ———
+앞페이지에서 클릭이라는 것이 동기가 되어 다음페이지가 호출되었음.
+차례대로 앞페이지의 클릭을 동기로 하여 뒤페이지를 호출하는 방식
+==> 동기식 호출- 특정한 페이지에서 한번에 다음페이지로만 호출  
+                         (순서대로 한번에 한번 호출되어 화면이 넘어가는 방식)
+
+==> 동기식 호출방식 3가지:  
+1) a태그  2) form태그 	3) location.href
+
+—————————————————————————————————
+ 
+네이버 메인(기상청, 증시정보, 네이버서버, 신문기사 호출)
+==> 원하는 만큼 서버와 통신을 해서 결과를 받아온 후 화면을 넘기지 않고 그 결과를
+       한 화면에 넣고 싶은 경우 동기식 호출로는 불가능
+==> 비동기식 호출(자바스크립트의 ajax, 에이작스, 아작스)
+==> 비동기식 호출방식 1가지:  ajax 
+
+
+
+
+
+
+
+
+
+
+
