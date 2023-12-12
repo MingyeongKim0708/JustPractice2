@@ -1,4 +1,4 @@
-package Programmers;
+package programmers;
 
 public class d5_24원소들의곱과합 {
 

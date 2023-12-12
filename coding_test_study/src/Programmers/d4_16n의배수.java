@@ -1,4 +1,4 @@
-package Programmers;
+package programmers;
 
 public class d4_16n의배수 {
 

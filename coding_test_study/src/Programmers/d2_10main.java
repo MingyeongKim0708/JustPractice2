@@ -1,4 +1,4 @@
-package Programmers;
+package programmers;
 
 public class d2_10main {
 

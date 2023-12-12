@@ -1,4 +1,4 @@
-package Programmers;
+package programmers;
 
 public class d0_숫자비교하기 {
 	public int solution(int num1, int num2) {

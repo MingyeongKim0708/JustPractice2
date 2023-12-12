@@ -1,4 +1,4 @@
-package Programmers;
+package programmers;
 
 public class d3_12문자리스트를문자열로변환하기 {
 

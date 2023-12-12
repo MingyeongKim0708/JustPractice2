@@ -1,4 +1,4 @@
-package Programmers;
+package programmers;
 
 public class d5_23주사위게임2 {
 

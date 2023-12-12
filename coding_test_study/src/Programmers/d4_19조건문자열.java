@@ -1,4 +1,4 @@
-package Programmers;
+package programmers;
 
 public class d4_19조건문자열 {
 

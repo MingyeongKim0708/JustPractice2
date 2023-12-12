@@ -1,4 +1,4 @@
-package Programmers;
+package programmers;
 
 public class d4_18홀짝에따라다른값반환하기 {
 

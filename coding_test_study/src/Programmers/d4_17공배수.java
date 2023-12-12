@@ -1,4 +1,4 @@
-package Programmers;
+package programmers;
 
 public class d4_17공배수 {
 	public static void main(String[] args) {

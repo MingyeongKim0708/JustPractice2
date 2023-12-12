@@ -1,4 +1,4 @@
-package Programmers;
+package programmers;
 
 public class d3_15두수의연산값비교하기 {
 

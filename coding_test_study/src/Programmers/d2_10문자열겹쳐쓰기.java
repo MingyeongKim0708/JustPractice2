@@ -1,4 +1,4 @@
-package Programmers;
+package programmers;
 
 public class d2_10문자열겹쳐쓰기 {
 	public String solution(String my_string, String overwrite_string, int s) {

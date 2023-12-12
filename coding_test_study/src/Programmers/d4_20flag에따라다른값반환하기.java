@@ -1,4 +1,4 @@
-package Programmers;
+package programmers;
 
 public class d4_20flag에따라다른값반환하기 {
 

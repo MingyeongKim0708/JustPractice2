@@ -1,4 +1,4 @@
-package Programmers;
+package programmers;
 
 public class d3_13문자열곱하기 {
 

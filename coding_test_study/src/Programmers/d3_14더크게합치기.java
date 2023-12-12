@@ -1,4 +1,4 @@
-package Programmers;
+package programmers;
 
 public class d3_14더크게합치기 {
 
