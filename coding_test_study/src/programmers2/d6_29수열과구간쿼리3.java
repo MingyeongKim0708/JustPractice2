@@ -12,9 +12,10 @@ public class d6_29수열과구간쿼리3 {
 		System.out.println(queries[0].length);
 		
 		for (int i = 0; i < queries.length; i++) {
-			queries[i][0] = a;
-			queries[i][0] = queries[i][1];
-			queries[i][1] = a;
+			a = arr[queries[i][0]];
+			arr[queries[i][0]] = arr[queries[i][1]];
+			arr[queries[i][1]] = a;
+			System.out.println(Arrays.toString(arr));
 		}
 		
 		System.out.println(Arrays.toString(arr));
